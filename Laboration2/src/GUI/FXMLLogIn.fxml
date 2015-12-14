@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="563.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="database1.FXMLController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="220.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="CD and Film Database">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Label>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <Pane prefHeight="243.0" prefWidth="698.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="256.0" layoutY="69.0" onAction="#handleLogInUsernameEvent" promptText="press enter after input" />
+            <PasswordField layoutX="256.0" layoutY="118.0" onAction="#handleLogInPasswordEvent" promptText="press enter after input" />
+            <Label layoutX="179.0" layoutY="74.0" text="Username:" />
+            <Label layoutX="182.0" layoutY="118.0" text="Password" />
+            <Button layoutX="317.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleConnectButtonOnClicked" text="Connect" />
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>

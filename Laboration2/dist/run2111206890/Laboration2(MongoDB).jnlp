@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Laboration2(MongoDB).jnlp">
+  <information>
+    <title>Laboration2(MongoDB)</title>
+    <vendor>Teddy</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Laboration2_MongoDB_.jar" size="37109" download="eager" />
+    <jar href="lib\mongo-java-driver-2.13.3.jar" size="605310" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Laboration2(MongoDB)" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="GUI.DatabaseUI"  name="Laboration2(MongoDB)" />
+  <update check="always"/>
+</jnlp>
