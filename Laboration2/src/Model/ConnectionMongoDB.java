@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Model;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.BulkWriteOperation;
@@ -51,7 +52,7 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
 
         db = mongoClient.getDB( "labb2" ); //labb2 = database
         
-        //addArtist("Green Teddy","Chile");
+        
     }
     
     //Test
@@ -81,14 +82,32 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
        return null; 
     }
 
+    
     @Override
-    public void addArtist(String name, String nationality) {
+    public void addArtist(String name, String nationality) throws ArtistAlreadyExists {
+        if(artistExists(name, nationality) ) {
+            throw new ArtistAlreadyExists(name);
+        }
+        else {
+            DBCollection coll = db.getCollection("artist");
+            BasicDBObject artist = new BasicDBObject();
+            artist.put("name", name);
+            artist.put("nationality", nationality);
+            coll.insert(artist);
+        }
+
+    }
+    private boolean artistExists(String name, String nationality) {
+        boolean exists = false;
         DBCollection coll = db.getCollection("artist");
-        BasicDBObject artist = new BasicDBObject();
-        artist.put("name", name);
-        artist.put("nationality", nationality);
-        coll.insert(artist);
-        mongoClient.close(); //För test
+        DBObject nameQuery = new BasicDBObject("name", name);
+        long count = coll.count(nameQuery);
+        try {
+            if(count > 0 ) {
+                exists = true;
+            }
+        }catch(Exception e){}
+        return exists;
     }
 
     @Override
