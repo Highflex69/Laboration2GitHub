@@ -16,12 +16,21 @@ import javafx.beans.property.SimpleStringProperty;
 public class Artist {
     private SimpleStringProperty name, nationality;
     private SimpleIntegerProperty id;
+    private ArrayList<Album> albumList;
     
     public Artist(int id, String name, String nationality)
     {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.nationality = new SimpleStringProperty(nationality);
+    }
+    
+    public Artist(int id, String name, String nationality, ArrayList albums)
+    {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.nationality = new SimpleStringProperty(nationality);
+        this.albumList = new ArrayList<Album>(albums);
     }
     
     public int getID()
@@ -37,5 +46,16 @@ public class Artist {
     public String getNationality()
     {
         return nationality.get();
-    }     
+    }  
+    
+    public ArrayList getAlbumList() {
+        return albumList;
+    }
+
+
+        
+    public void setAlbum(Album newalbum)
+    {
+        albumList.add(newalbum);
+    }
 }

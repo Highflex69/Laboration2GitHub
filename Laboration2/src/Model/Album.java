@@ -21,14 +21,13 @@ public class Album {
     private ArrayList<Artist> madeby;
    
     
-    public Album(int id, String title, String genre, int setdate, Artist artist){
+    public Album(int id, String title, String genre, int setdate, ArrayList artistList){
         this.id = new SimpleIntegerProperty(id);
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);
         this.date = new SimpleIntegerProperty(setdate);
         this.rate = new SimpleFloatProperty(0);
-        this.madeby = new ArrayList<Artist>();
-        this.madeby.add(artist);
+        this.madeby = new ArrayList<Artist>(artistList);
     }
     
     public Album(int id, String title, String genre, int setdate, float setRate){
@@ -57,16 +56,21 @@ public class Album {
         return date.get();
     }
     
-    public ArrayList<> getMadeBy() {
-        
+    public ArrayList getMadeBy() {
+        return madeby;
+    }
+    
+    public String getMadeByToString()
+    {
+        return madeby.toString();
     }
 
     public void setRate(float setrate) {
         rate.set(setrate);
     }
-    
-    
-    public String GetMadeBy() {
-        return madeby.get();
+        
+    public void setMadeBy(Artist newartist)
+    {
+        madeby.add(newartist);
     }
 }
