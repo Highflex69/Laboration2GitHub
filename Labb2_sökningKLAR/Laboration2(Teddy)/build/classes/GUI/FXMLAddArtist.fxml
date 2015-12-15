@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.test2Controller">
+   <center>
+      <TableView fx:id="artistTable" prefHeight="249.0" prefWidth="680.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="artistidC" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameC" prefWidth="296.0" text="Name" />
+            <TableColumn fx:id="nationalityC" prefWidth="205.0" text="Nationality" />
+            <TableColumn fx:id="albumsC" prefWidth="205.0" text="Album(s)" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="111.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#getAllArtist" text="get Artists" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="artistnameTF" promptText="Artist' name" />
+                  <TextField fx:id="artistnationalityTF" layoutX="193.0" layoutY="45.0" promptText="Artist' nationality" />
+                  <Button fx:id="addArtistB" mnemonicParsing="false" onAction="#addArtist" text="Add" />
+               </children>
+            </HBox>
+            <Button fx:id="returntomenuB" layoutX="433.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleReturnButtonEvent" text="return to menu" />
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

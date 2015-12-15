@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.testController">
+   <center>
+      <TableView fx:id="albumTable" prefHeight="699.0" prefWidth="1317.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idC" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="titleC" prefWidth="75.0" text="Title" />
+            <TableColumn fx:id="genreC" prefWidth="75.0" text="Genre" />
+            <TableColumn fx:id="dateC" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="rateC" prefWidth="75.0" text="Rate" />
+            <TableColumn fx:id="madebyC" prefWidth="75.0" text="Made By" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="126.0" prefWidth="874.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="getAlbumB" mnemonicParsing="false" onAction="#getAlbumsInAdd" text="get Albums" />
+            <HBox alignment="CENTER" prefHeight="37.0" prefWidth="1317.0">
+               <children>
+                  <TextField fx:id="titleTF" promptText="Title" />
+                  <TextField fx:id="genreTF" promptText="Genre" />
+                  <TextField fx:id="dateTF" promptText="date" />
+                  <TextField fx:id="madeByTF" promptText="Artist" />
+                  <Button fx:id="addB" mnemonicParsing="false" onAction="#handleAddAlbumButton" text="Add" />
+               </children>
+            </HBox>
+            <Button fx:id="addB1" mnemonicParsing="false" onAction="#handleReturnButtonEvent" text="Return to Menu" />
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
