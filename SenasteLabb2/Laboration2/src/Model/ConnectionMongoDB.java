@@ -335,49 +335,30 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
 
     @Override
     public void rateAlbum(Album album, String score) {
-        DBCollection coll = db.getCollection("album");
-        BasicDBObject updatedoc = new BasicDBObject("$set", new BasicDBObject("rate",Integer.parseInt(score)));
-        System.out.println("rate: " + Integer.parseInt(score));
         
-        BasicDBObject docToUpdate = new BasicDBObject("_id", album.getID());
+        ObjectId id = new ObjectId(album.getID());
+        
+        DBCollection coll = db.getCollection("album");
+        
+        BasicDBObject newDocument = new BasicDBObject();
+        newDocument.append("$set", new BasicDBObject().append("rate", score));
+        BasicDBObject searchQuery = new BasicDBObject().append("_id", id);
+        
+        coll.update(searchQuery, newDocument);
+        
+        
+        /*
+        BasicDBObject updatedoc = new BasicDBObject();
+        updatedoc.append("$set", new BasicDBObject().append("rate",score));
+
+        BasicDBObject docToUpdate = new BasicDBObject().append("_id", album.getID());
        
         System.out.println(album.getID());
         
         
         try {
-                //coll.update(docToUpdate,updatedoc);
-                coll.findAndModify(docToUpdate, updatedoc);
-                //System.out.println(coll.findOne(docToUpdate).get("title").toString());
-            }catch(Exception e){System.out.println("Update album failed.");}
-    }    
+                coll.update(docToUpdate,updatedoc);
 
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            }catch(Exception e){System.out.println("Update album failed.");}*/
+    }        
 }
-

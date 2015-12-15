@@ -172,7 +172,7 @@ public class testController  implements Initializable {
                 try {
                     con = new ConnectionMongoDB();
                     resultList = con.getAlbum(titleTF.getText());
-
+                    
                     if(resultList.size()>0)
                     {                       
                         con.rateAlbum(resultList.get(0), rateTF.getText());
