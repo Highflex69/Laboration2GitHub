@@ -239,13 +239,28 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
             }
             
             //Add album to Artist
+            
             DBCollection coll = db.getCollection("artist");
-            
             DBObject findAlbum = new BasicDBObject("_id", artistObjId);
-            
-            BasicDBObject updateAlbum = new BasicDBObject("$addToSet", 
-            new BasicDBObject("albums", title));
-            
+            BasicDBObject updateAlbum;
+            if(firstAlbum(artistObjId)) {
+                
+                    BasicDBObject removeAlbum = new BasicDBObject("albums", -1);
+                    BasicDBObject popQuery = new BasicDBObject("$pop", removeAlbum);
+                    try {
+                        coll.update(findAlbum, popQuery);
+                    }catch(Exception e){System.out.println("Remove first album failed.");}    
+                    BasicDBObject setQuery = new BasicDBObject("albums", title); 
+                    
+                    updateAlbum = new BasicDBObject("$addToSet", setQuery);
+                
+            }
+            else {
+                
+                updateAlbum = new BasicDBObject("$addToSet",
+                        new BasicDBObject("albums", title));
+                
+            }
             try {
                 coll.update(findAlbum, updateAlbum);
             }catch(Exception e){System.out.println("Update artist failed.");}
@@ -346,6 +361,24 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
             made = true;
         }
         return made;
+    }
+    private boolean firstAlbum(ObjectId artistObjId){
+        boolean first = false;
+        DBCollection coll = db.getCollection("artist");
+        BasicDBObject findArtist = new BasicDBObject("_id", artistObjId);
+        BasicDBObject firstAlbum = new BasicDBObject("albums", "not yet set");
+        BasicDBObject query = new BasicDBObject();
+        List<BasicDBObject> lista = new ArrayList<>();
+        lista.add(findArtist);
+        lista.add(firstAlbum);
+        query.put("$and", lista);
+        long count = coll.count(query);
+        System.out.println("Count: " +count);
+        if(count > 0) {
+            first = true;
+        }
+        
+        return first;
     }
 
     @Override
