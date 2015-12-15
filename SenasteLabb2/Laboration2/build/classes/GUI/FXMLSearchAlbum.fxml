@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="852.0" prefWidth="1071.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.testController">
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="188.0" prefWidth="1071.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="1071.0">
+               <children>
+                  <TextField fx:id="titleTF" prefHeight="31.0" prefWidth="420.0" promptText="Search by title or genre or rate" />
+                  <Button fx:id="searchalbumB" mnemonicParsing="false" onAction="#getAlbumSearch" text="Search Album" />
+               </children>
+            </HBox>
+            <Button fx:id="returnB" mnemonicParsing="false" onAction="#handleReturnButtonEvent" text="Return to Menu" />
+         </children>
+      </VBox>
+   </bottom>
+   <top>
+      <TableView fx:id="albumTable" prefHeight="697.0" prefWidth="1071.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="idC" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="titleC" prefWidth="75.0" text="Title" />
+            <TableColumn fx:id="genreC" prefWidth="75.0" text="Genre" />
+            <TableColumn fx:id="dateC" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="rateC" prefWidth="75.0" text="Rate" />
+            <TableColumn fx:id="artistC" prefWidth="75.0" text="Artist" />
+         </columns>
+      </TableView>
+   </top>
+</BorderPane>
