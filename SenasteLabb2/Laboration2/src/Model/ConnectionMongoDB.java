@@ -50,7 +50,8 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
                                               new ServerAddress("localhost", 27019)));*/
         mongoClient = new MongoClient( "localhost" , 27017 );
 
-        db = mongoClient.getDB( "labb2" ); //labb2 = database               
+        db = mongoClient.getDB( "labb2" ); //labb2 = database
+        
     }
     
     //Test
@@ -235,6 +236,19 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
                 album.put("artist", list);
                 coll.insert(album);
             }
+            
+            //Add album to Artist
+            DBCollection coll = db.getCollection("artist");
+            
+            DBObject findAlbum = new BasicDBObject("_id", artistObjId);
+
+            BasicDBObject updateAlbum = new BasicDBObject("$addToSet", 
+            new BasicDBObject("madeby", title));
+                    
+            try {
+                coll.update(findAlbum, updateAlbum);
+            }catch(Exception e){System.out.println("Update artist failed.");}
+            
         }
     }
     private boolean albumExists(String title, String genre, int date) {
