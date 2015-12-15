@@ -12,14 +12,22 @@ import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
- * @author Santos
+ * @author Carlos & Teddy
+ * Class holds relevant information about an album such as title, name, genre 
+ * ect.
  */
 public class Album {    
     private SimpleStringProperty title, id, genre, artist;
     private SimpleIntegerProperty date;
     private SimpleFloatProperty rate;
    
-    
+    /**
+     * Creates an album
+     * @param title Album title
+     * @param genre Album genre
+     * @param setdate Year of release
+     * @param theartist Artist who made the album
+     */
     public Album(String title, String genre, int setdate, String theartist){
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);
@@ -36,6 +44,14 @@ public class Album {
         
     }
     
+    /**
+     * Creates an album
+     * @param id Unique album id
+     * @param title Album title
+     * @param genre Album genre
+     * @param setdate Year of release
+     * @param theartist Artist who made the album 
+     */
     public Album(String id, String title, String genre, int setdate, String theartist){
         this.id = new SimpleStringProperty(id);
         this.title = new SimpleStringProperty(title);
@@ -52,7 +68,15 @@ public class Album {
         }
         
     }
-    
+    /**
+     * 
+     * @param id
+     * @param title
+     * @param genre
+     * @param setdate
+     * @param rate
+     * @param theartist 
+     */
     public Album(String id, String title, String genre, int setdate, float rate, String theartist){
         this.id = new SimpleStringProperty(id);
         this.title = new SimpleStringProperty(title);
@@ -69,7 +93,13 @@ public class Album {
         }
         
     }
-    
+    /**
+     * 
+     * @param title
+     * @param genre
+     * @param setdate
+     * @param setRate 
+     */
     public Album(String title, String genre, int setdate, float setRate){
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);
@@ -77,7 +107,12 @@ public class Album {
         this.rate = new SimpleFloatProperty(setRate);
         this.artist = new SimpleStringProperty("not set yet");
     }
-    
+    /**
+     * 
+     * @param title
+     * @param genre
+     * @param setdate 
+     */
     public Album(String title, String genre, int setdate){
         this.title = new SimpleStringProperty(title);
         this.genre = new SimpleStringProperty(genre);

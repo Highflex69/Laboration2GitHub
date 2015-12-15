@@ -28,12 +28,17 @@ import org.bson.types.ObjectId;
 
 
 /**
- *
- * @author Teddy
+ * Handles all the communication with mongo database.
+ * @author Carlos & Teddy
  */
 public class ConnectionMongoDB implements InterfaceMongoDB{
     private DB db;
     MongoClient mongoClient;
+    
+    /**
+     * Creates a connection with the local host
+     * @throws UnknownHostException 
+     */
     public ConnectionMongoDB() throws UnknownHostException
     {
        /*
@@ -53,7 +58,11 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         db = mongoClient.getDB( "labb2" ); //labb2 = database               
     }
     
-    //Test
+    /**
+     * Returns a list of artists that matches search string
+     * @param queryStr Search string
+     * @return List with artists
+     */
     public ArrayList<Artist> getArtist(String queryStr) {
         
         ArrayList<Artist> ArtistList = new ArrayList<Artist>();
@@ -83,6 +92,10 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         return ArtistList; 
     }
     
+    /**
+     * Returns a list with all artist that exists in database
+     * @return List with artists
+     */
     public ArrayList<Artist> getAllArtist() {
         
         ArrayList<Artist> ArtistList = new ArrayList<Artist>();
@@ -105,6 +118,11 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         return ArtistList; 
     }
     
+    /**
+     * Gets albums that matches search string
+     * @param queryStr Search string 
+     * @return List of albums
+     */
     public ArrayList<Album> getAlbum(String queryStr) {
         
         ArrayList<Album> AlbumList = new ArrayList<Album>();
@@ -130,6 +148,10 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         return AlbumList; 
     }
     
+    /**
+     * Returns all albums that exists in database
+     * @return Album list
+     */
     public ArrayList<Album> getAllAlbum() {
         
         ArrayList<Album> AlbumList = new ArrayList<Album>();
@@ -154,12 +176,22 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         return AlbumList; 
     }
 
+    /**
+     * Super search, not needed in this version
+     * @param searchString
+     * @return 
+     */
     @Override
     public ArrayList<MadeBy> searchForString(String searchString) {
        return null; 
     }
 
-    
+    /**
+     * Adds an Artist to database
+     * @param name Artist name
+     * @param nationality Artist natinality
+     * @throws ArtistAlreadyExists if artist already exists in database
+     */
     @Override
     public void addArtist(String name, String nationality) throws ArtistAlreadyExists {
         if(artistExists(name) ) {
@@ -176,8 +208,7 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
             coll.insert(artist);
         }
 
-    }
-    
+    }    
     private boolean artistExists(String name) {
         boolean exists = false;
         DBCollection coll = db.getCollection("artist");
@@ -190,7 +221,22 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         }catch(Exception e){}
         return exists;
     }
-
+    
+    /**
+     * Adds one Album to databse. One artist is added to the list of artist that
+     * made the album. The album is also added to artists album list. If the
+     * very same album exists, the album is added to artists album list and the
+     * album is updated with this artist. A new album is created if album does 
+     * not exist.
+     * @param title Album title
+     * @param genre Album genre
+     * @param artistName Artist name
+     * @param date Album release Year
+     * @throws ArtistDoesNotExistException If trying to add album asociated with
+     * artist that does not exist in database.
+     * @throws ArtistAlreadyMadeAlbum If the album exists with the specific 
+     * album.
+     */
     @Override
     public void addAlbum(String title, String genre, String artistName, int date) throws ArtistDoesNotExistException, ArtistAlreadyMadeAlbum {
         if(!artistExists(artistName) ) {
@@ -380,7 +426,12 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         
         return first;
     }
-
+    
+    /**
+     * Gives a score to an Album.
+     * @param album Album to be rated
+     * @param score Score to add to Album
+     */
     @Override
     public void rateAlbum(Album album, String score) {
         
@@ -395,6 +446,9 @@ public class ConnectionMongoDB implements InterfaceMongoDB{
         coll.update(searchQuery, newDocument);
     }
     
+    /**
+     * Closes the connection with mongo database.
+     */
     public void closeMongoDB()
     {
         mongoClient.close();

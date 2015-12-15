@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Santos
+ * @author Carlos & Teddy
  */
 public interface InterfaceMongoDB {
     

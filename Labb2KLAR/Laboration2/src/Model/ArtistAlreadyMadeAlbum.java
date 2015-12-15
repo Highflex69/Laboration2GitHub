@@ -6,8 +6,9 @@
 package Model;
 
 /**
- *
- * @author Santos
+ * Exception to be called when trying to add album that already exists in 
+ * database with the specific artist as maker.
+ * @author Carlos & Teddy
  */
 public class ArtistAlreadyMadeAlbum extends Exception{
     private String title, genre, artist;

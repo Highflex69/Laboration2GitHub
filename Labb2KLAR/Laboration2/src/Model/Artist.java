@@ -10,8 +10,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- *
- * @author Teddy
+ * An artist holds relevant information about one artist such as id, name
+ * nationality and a list of made albums
+ * @author Carlos & Teddy
  */
 public class Artist {
     private SimpleStringProperty id, name, nationality, albumList;

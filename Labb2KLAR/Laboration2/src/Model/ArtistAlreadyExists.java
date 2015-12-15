@@ -6,8 +6,9 @@
 package Model;
 
 /**
- *
- * @author Santos
+ * Exception to be called when trying to add artist that already exists in 
+ * database
+ * @author Carlos & Teddy
  */
 public class ArtistAlreadyExists extends Exception{
     private String artist;

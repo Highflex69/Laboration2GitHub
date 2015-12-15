@@ -6,8 +6,8 @@
 package Model;
 
 /**
- *
- * @author Santos
+ * Not used in mongo databse.
+ * @author Carlos & Teddy
  */
 public class MadeBy {
     private Artist artist;

@@ -6,8 +6,9 @@
 package Model;
 
 /**
- *
- * @author Santos
+ * Exception to be called when trying to add album with an artist asociated that
+ * does not exist in database.
+ * @author Carlos & Teddy
  */
 public class ArtistDoesNotExistException extends Exception{
     private String artist;
