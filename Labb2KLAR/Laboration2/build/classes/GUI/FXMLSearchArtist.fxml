@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="767.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.test2Controller">
+   <center>
+      <TableView fx:id="artistTable" prefHeight="604.0" prefWidth="1113.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="artistidC" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameC" prefWidth="292.0" text="Name" />
+            <TableColumn fx:id="nationalityC" prefWidth="207.0" text="Nationality" />
+            <TableColumn fx:id="albumsC" prefWidth="195.0" text="AlbumList" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <VBox prefHeight="128.0" prefWidth="1113.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1113.0">
+               <children>
+                  <TextField fx:id="artistnameTF" promptText="Search by Artist" />
+                  <Button fx:id="searchartistB" mnemonicParsing="false" onAction="#getSearchTest" text="Search Artist" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="returntomenuB" mnemonicParsing="false" onAction="#handleReturnButtonEvent" text="Return to Menu" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
